@@ -3,6 +3,7 @@ import { matchPrefixes } from "@enitoni/gears"
 import { AutobanService } from "../services"
 import { MessageEmbed } from "discord.js"
 import { ERROR_COLOR, PRIMARY_COLOR } from "../../../constants"
+import { sendMessage } from "../../core/helpers"
 
 export const removeCommand = new Command()
   .match(matchPrefixes("remove"))
@@ -18,7 +19,7 @@ export const removeCommand = new Command()
         title: "Phrase does not exist",
       })
 
-      return message.channel.send({ embed })
+      return sendMessage(context, embed)
     }
 
     await service.remove(content)
@@ -29,5 +30,5 @@ export const removeCommand = new Command()
       description: `"${content}" was removed from the list of autoban phrases.`,
     })
 
-    return message.channel.send({ embed })
+    return sendMessage(context, embed)
   })

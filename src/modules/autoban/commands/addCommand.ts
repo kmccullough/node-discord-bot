@@ -3,6 +3,7 @@ import { matchPrefixes } from "@enitoni/gears"
 import { AutobanService } from "../services"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
+import { sendMessage } from "../../core/helpers"
 
 export const addCommand = new Command()
   .match(matchPrefixes("add"))
@@ -18,5 +19,5 @@ export const addCommand = new Command()
       description: `"${content}" was added to the list of autoban phrases.`,
     })
 
-    return message.channel.send({ embed })
+    return sendMessage(context, embed)
   })

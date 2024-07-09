@@ -2,10 +2,9 @@ import { Middleware } from "@enitoni/gears-discordjs"
 import { MessageEmbed } from "discord.js"
 import { ERROR_COLOR } from "../../../constants"
 import { PermissionError, UsageError } from "../classes"
+import { sendMessage } from "../helpers"
 
 export const handleError: Middleware = async (context, next) => {
-  const { message } = context
-
   try {
     await next()
   } catch (error: any) {
@@ -25,6 +24,6 @@ export const handleError: Middleware = async (context, next) => {
       embed.setDescription(error.reason)
     }
 
-    return message.channel.send({ embed })
+    return sendMessage(context, embed);
   }
 }

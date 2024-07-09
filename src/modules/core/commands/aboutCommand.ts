@@ -2,10 +2,11 @@ import { Command } from "@enitoni/gears-discordjs"
 import { matchPrefixes } from "@enitoni/gears"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
+import { sendMessage } from "../helpers"
 
 const embed = new MessageEmbed({
   color: PRIMARY_COLOR,
-  title: "Nodeiflux Bot",
+  title: "Node Discord Bot",
   description: "Tools to assist with moderation and assistance in Node discord",
   fields: [
     {
@@ -27,4 +28,4 @@ const embed = new MessageEmbed({
 
 export const aboutCommand = new Command()
   .match(matchPrefixes("about"))
-  .use((context) => context.message.channel.send({ embed }))
+  .use((context) => sendMessage(context, embed))

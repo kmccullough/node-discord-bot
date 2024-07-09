@@ -4,6 +4,7 @@ import { ResponseService } from "../services"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
 import { getResponseListEmbed } from "../helpers"
+import { sendMessage } from "../../core/helpers"
 
 export const responseCommand = new Command().match(matchAlways()).use(async (context) => {
   const { message, manager, content } = context
@@ -12,9 +13,7 @@ export const responseCommand = new Command().match(matchAlways()).use(async (con
   const response = service.responses[content]
 
   if (!response)
-    return message.channel.send({
-      embed: getResponseListEmbed(Object.keys(service.responses)),
-    })
+    return sendMessage(context, getResponseListEmbed(Object.keys(service.responses)))
 
   const embed = new MessageEmbed({
     title: response.title,
@@ -23,5 +22,5 @@ export const responseCommand = new Command().match(matchAlways()).use(async (con
   })
 
   await message.delete()
-  return message.channel.send({ embed })
+  return sendMessage(context, embed)
 })

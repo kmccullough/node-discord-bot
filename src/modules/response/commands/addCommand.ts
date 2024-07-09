@@ -6,6 +6,7 @@ import { requireAdmin } from "../../admin/middleware"
 import { ResponseService } from "../services"
 import { UsageError } from "../../core/classes"
 import { PRIMARY_COLOR } from "../../../constants"
+import { sendMessage } from "../../core/helpers"
 
 export const addCommand = new Command()
   .match(matchPrefixes("add"))
@@ -28,5 +29,5 @@ export const addCommand = new Command()
       description: `Test it with !r ${name}`,
     })
 
-    return message.channel.send({ embed })
+    return sendMessage(context, embed)
   })

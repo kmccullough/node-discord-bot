@@ -5,6 +5,7 @@ import { ResponseService } from "../services"
 import { UsageError } from "../../core/classes"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
+import { sendMessage } from "../../core/helpers"
 
 export const removeCommand = new Command()
   .match(matchPrefixes("remove"))
@@ -24,5 +25,5 @@ export const removeCommand = new Command()
       title: `Response "${content}" removed`,
     })
 
-    return message.channel.send({ embed })
+    return sendMessage(context, embed)
   })
