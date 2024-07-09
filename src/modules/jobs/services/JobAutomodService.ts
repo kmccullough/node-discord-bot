@@ -1,6 +1,6 @@
 import { Service } from "@enitoni/gears-discordjs"
 import { getJobHelpEmbed } from "../helpers"
-import { ContextLike, createServiceContext } from "../../core/helpers/context"
+import { ContextLike, createServiceContext } from "../../core/helpers"
 import { sendMessage } from "../../core/helpers"
 import { getBanNotifyEmbed } from "../../autoban/helpers"
 

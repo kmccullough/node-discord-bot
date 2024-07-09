@@ -22,6 +22,7 @@ export const handleError: Middleware = async (context, next) => {
     if (error instanceof UsageError) {
       embed.setTitle("Usage error")
       embed.setDescription(error.reason)
+      embed.addFields(error.fields as any)
     }
 
     return sendMessage(context, embed);

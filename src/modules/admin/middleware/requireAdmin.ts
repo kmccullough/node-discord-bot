@@ -1,16 +1,16 @@
 import { Middleware } from "@enitoni/gears-discordjs"
 import { PermissionError } from "../../core/classes"
-import { isAdmin } from "../helper"
-import { ADMIN_ROLES } from "../constants"
+import { AdminService } from "../services"
 
 export const requireAdmin = (): Middleware => async (context, next) => {
-  const { message } = context
+  const { manager, message } = context
   const { member } = message
+  const service = manager.getService(AdminService)
 
   if (member) {
-    if (!isAdmin(member)) {
+    if (!service.isAdmin(member)) {
       throw new PermissionError(
-        `You need one of the following roles to run this command:\n${ADMIN_ROLES.join(
+        `You need one of the following roles to run this command:\n${service.roles.join(
           ", "
         )}`
       )

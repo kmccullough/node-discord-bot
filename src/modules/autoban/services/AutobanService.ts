@@ -1,9 +1,9 @@
 import { Service } from "@enitoni/gears-discordjs"
 import { JSONStorage } from "../../../common/storage/classes"
-import { isAdmin } from "../../admin/helper"
 import { getBanNotifyEmbed } from "../helpers"
 import { sendMessage } from "../../core/helpers"
-import { ContextLike, createServiceContext } from "../../core/helpers/context"
+import { ContextLike, createServiceContext } from "../../core/helpers"
+import { AdminService } from "../../admin/services"
 
 const storage = new JSONStorage<string[]>("autobans.json", [])
 
@@ -35,7 +35,7 @@ export class AutobanService extends Service {
     const phrase = this.autobans.find((x) => message.content.includes(x))
     if (!phrase) return
 
-    if (isAdmin(member))
+    if (this.manager.getService(AdminService).isAdmin(member))
       return sendMessage(context, "Poof! You're banned. ✨")
 
     await message.delete()
