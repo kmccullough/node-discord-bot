@@ -6,7 +6,7 @@ import { PRIMARY_COLOR } from "../../../constants"
 const embed = new MessageEmbed({
   color: PRIMARY_COLOR,
   title: "Nodeiflux Bot",
-  description: "Tools to assist with moderation and assistance in Nodeiflux",
+  description: "Tools to assist with moderation and assistance in Node discord",
   fields: [
     {
       name: "Author",
@@ -14,8 +14,13 @@ const embed = new MessageEmbed({
         "Made by Enitoni (<@185820463220391937>) with the [gears](https://gears.enitoni.dev) library",
     },
     {
+      name: "Contributors",
+      value:
+        "Expanded by Kerry McCullough (<@196799749200936961>)",
+    },
+    {
       name: "Repository",
-      value: "https://gitlab.com/enitoni/nodeiflux-bot",
+      value: "https://gitlab.com/kmccullough/node-discord-bot",
     },
   ],
 })

@@ -1,18 +1,17 @@
 import { Middleware } from "@enitoni/gears-discordjs"
 import { MessageEmbed } from "discord.js"
 import { ERROR_COLOR } from "../../../constants"
-import { PermissionError } from "../classes/PermissionError"
-import { UsageError } from "../classes"
+import { PermissionError, UsageError } from "../classes"
 
 export const handleError: Middleware = async (context, next) => {
   const { message } = context
 
   try {
     await next()
-  } catch (error) {
+  } catch (error: any) {
     const embed = new MessageEmbed({
       color: ERROR_COLOR,
-      title: "Oops, an unknown error occured",
+      title: "Oops, an unknown error occurred",
       description: error.message || error,
     })
 
