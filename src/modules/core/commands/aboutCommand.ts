@@ -3,6 +3,7 @@ import { matchPrefixes } from "@enitoni/gears"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
 import { sendMessage } from "../helpers"
+import { requirePermission } from "../../permission/middleware"
 
 const embed = new MessageEmbed({
   color: PRIMARY_COLOR,
@@ -28,4 +29,5 @@ const embed = new MessageEmbed({
 
 export const aboutCommand = new Command()
   .match(matchPrefixes("about"))
+  .use(requirePermission("about", "about-all"))
   .use((context) => sendMessage(context, embed))

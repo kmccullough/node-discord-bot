@@ -1,15 +1,15 @@
 import { Command } from "@enitoni/gears-discordjs"
 import { matchPrefixes } from "@enitoni/gears"
-import { requireAdmin } from "../../admin/middleware"
 import { ResponseService } from "../services"
 import { UsageError } from "../../core/classes"
 import { MessageEmbed } from "discord.js"
 import { PRIMARY_COLOR } from "../../../constants"
 import { sendMessage } from "../../core/helpers"
+import { requirePermission } from "../../permission/middleware"
 
 export const removeCommand = new Command()
   .match(matchPrefixes("remove"))
-  .use(requireAdmin())
+  .use(requirePermission("response-remove", "response-all"))
   .use(async (context) => {
     const { message, manager, content } = context
     const service = manager.getService(ResponseService)

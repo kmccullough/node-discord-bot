@@ -6,14 +6,14 @@ import * as config from "../config.json"
 import { handleError } from "./modules/core/middleware"
 
 /** Services */
-import { AdminService } from "./modules/admin/services"
+import { PermissionService } from "./modules/permission/services"
 import { AutobanService } from "./modules/autoban/services"
 import { JobAutomodService } from "./modules/jobs/services"
 import { ResponseService } from "./modules/response/services"
 
 /** Groups and Commands */
 import { aboutCommand } from "./modules/core/commands"
-import { adminGroup } from "./modules/admin/groups"
+import { permissionsGroup } from "./modules/permission/groups"
 import { autobanGroup } from "./modules/autoban/groups"
 import { responseGroup } from "./modules/response/groups"
 import { Intents } from "discord.js"
@@ -31,10 +31,10 @@ const adapter = new Adapter({
 const group = new CommandGroup()
   .match(matchPrefixes("!"))
   .use(handleError)
-  .setCommands(aboutCommand, adminGroup, autobanGroup, responseGroup)
+  .setCommands(aboutCommand, permissionsGroup, autobanGroup, responseGroup)
 
 const bot = new Bot({
-  services: [AdminService, AutobanService, JobAutomodService, ResponseService],
+  services: [PermissionService, AutobanService, JobAutomodService, ResponseService],
   commands: [group],
   adapter,
 })

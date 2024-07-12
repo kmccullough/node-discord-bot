@@ -10,7 +10,7 @@ export interface ServiceContext {
   message: Message,
 }
 
-export type ContextLike = Context | ServiceContext;
+export type ContextLike = Context | ServiceContext
 
 export const createServiceContext = (bot: Bot, manager: ServiceManager<any, any>, message: Message): ServiceContext => ({
   bot,

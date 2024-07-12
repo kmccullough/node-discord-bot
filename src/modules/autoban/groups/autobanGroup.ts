@@ -1,9 +1,9 @@
 import { CommandGroup } from "@enitoni/gears-discordjs"
 import { matchPrefixes } from "@enitoni/gears"
-import { requireAdmin } from "../../admin/middleware"
 import { addCommand, removeCommand } from "../commands"
+import { requirePermission } from "../../permission/middleware"
 
 export const autobanGroup = new CommandGroup()
   .match(matchPrefixes("at", "autoban"))
-  .use(requireAdmin())
+  .use(requirePermission("autoban", "autoban-all"))
   .setCommands(addCommand, removeCommand)

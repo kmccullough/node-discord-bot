@@ -25,6 +25,6 @@ export const handleError: Middleware = async (context, next) => {
       embed.addFields(error.fields as any)
     }
 
-    return sendMessage(context, embed);
+    return sendMessage(context, embed)
   }
 }

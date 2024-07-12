@@ -3,7 +3,7 @@ import { JSONStorage } from "../../../common/storage/classes"
 import { getBanNotifyEmbed } from "../helpers"
 import { sendMessage } from "../../core/helpers"
 import { ContextLike, createServiceContext } from "../../core/helpers"
-import { AdminService } from "../../admin/services"
+import { PermissionService } from "../../permission/services"
 
 const storage = new JSONStorage<string[]>("autobans.json", [])
 
@@ -35,7 +35,7 @@ export class AutobanService extends Service {
     const phrase = this.autobans.find((x) => message.content.includes(x))
     if (!phrase) return
 
-    if (this.manager.getService(AdminService).isAdmin(member))
+    if (this.manager.getService(PermissionService).hasPermission(member, "autoban"))
       return sendMessage(context, "Poof! You're banned. ✨")
 
     await message.delete()

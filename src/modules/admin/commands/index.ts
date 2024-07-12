@@ -1,7 +1,0 @@
-export * from "./adminCommand"
-export * from "./roleCommand"
-export * from "./roleAddCommand"
-export * from "./roleRemoveCommand"
-export * from "./userCommand"
-export * from "./userAddCommand"
-export * from "./userRemoveCommand"

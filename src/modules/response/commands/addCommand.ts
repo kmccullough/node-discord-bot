@@ -2,15 +2,15 @@ import { matchPrefixes } from "@enitoni/gears"
 import { Command } from "@enitoni/gears-discordjs"
 import { MessageEmbed } from "discord.js"
 
-import { requireAdmin } from "../../admin/middleware"
 import { ResponseService } from "../services"
 import { UsageError } from "../../core/classes"
 import { PRIMARY_COLOR } from "../../../constants"
 import { sendMessage } from "../../core/helpers"
+import { requirePermission } from "../../permission/middleware"
 
 export const addCommand = new Command()
   .match(matchPrefixes("add"))
-  .use(requireAdmin())
+  .use(requirePermission("response-add", "response-all"))
   .use(async (context) => {
     const { message, manager, content } = context
     const service = manager.getService(ResponseService)
